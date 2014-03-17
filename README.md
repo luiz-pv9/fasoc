@@ -13,11 +13,11 @@ context.width(); // undefined
 context.width(30); // context
 context.width(); // 30
 
-```javascript
 fasoc.attrGetterSetter(context, 'height');
 context.height(); // undefined
 context.height(20); // context
 context.height(); // 20
+```
 
 When the function is called as setter it returns the context, allowing the chain
 pattern
@@ -25,7 +25,8 @@ pattern
 ```javascript
 context.width(100).height(200);
 context.width(); // 100
-context.height(); // 200
+context.height(); // 200 
+```
 
 + List attribute (`listGetterSetter`)
 Represents a collection of values. For example: phones, 
