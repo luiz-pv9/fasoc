@@ -2,7 +2,7 @@ fasoc
 =====
 Currently there are four types of data in fasoc.
 
-###### Simple attribute [`attrGetterSetter`]
+##### Simple attribute `attrGetterSetter`
 
 Represents a single value. For example: width, speed, id, location, etc,.
 ###### Examples:
@@ -45,7 +45,7 @@ context.opacity(1.5); // false
 context.opacity(); // 1.0 (didn't change value)
 context.opacity(0.7); // context
 context.opacity(); // 0.7
-```
+``t`
 
 + List attribute (`listGetterSetter`)
 Represents a collection of values. For example: phones, 
