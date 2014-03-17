@@ -1,8 +1,8 @@
 fasoc
 =====
-Currently there are four types of data in fasoc.
+Currently there are four types of data in fasoc: simple attribute, list attribute, hash list attribute and hash attribute.
 
-##### Simple attribute `attrGetterSetter`
+#### Simple attribute `attrGetterSetter`
 
 Represents a single value. For example: width, speed, id, location, etc,.
 ###### Examples:
