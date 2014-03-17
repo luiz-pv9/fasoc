@@ -1,0 +1,16 @@
+{
+  "name": "Quxbar",
+  "version": "0.0.1",
+  "author": "Luiz Paulo de Vasconcellos <esin.luiz@gmail.com>",
+  "description": "functions as sort of classes using chain pattern",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "dependencies": {
+    "underscore": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  }
+}
