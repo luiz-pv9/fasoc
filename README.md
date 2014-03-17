@@ -25,7 +25,7 @@ pattern
 
 ```javascript
 context.width(100).height(200);
-context.width(); // 10t 0
+context.width(); // 100
 context.height(); // 200 
 ```
 
@@ -45,7 +45,7 @@ context.opacity(1.5); // false
 context.opacity(); // 1.0 (didn't change value)
 context.opacity(0.7); // context
 context.opacity(); // 0.7
-``t`
+```
 
 + List attribute (`listGetterSetter`)
 Represents a collection of values. For example: phones, 
