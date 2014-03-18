@@ -58,7 +58,7 @@ fasoc.listGetterSetter(context, 'ids');
 context.ids(); // []
 context.ids(20); // context
 context.ids(); // [20]
-context.ids(3); // context
+context.ids(30); // context
 context.ids(); // [20, 30]
 ```
 
@@ -87,5 +87,58 @@ context.ids(); // []
 listGetterSetter also accepts an `accept` function in the config object
 
 
-+ HashList attribute (`hashListGetterSetter`)
+#### Hash list attribute `hashListGetterSetter`
+
+Represents a collection of hashes. For example: attributes, styles, countries
+The first attribute is the "id" of the hash, used internally to search for the value.
+In the example below, the 'name' attribute is the id of each hash in the list
+
+###### Examples:
+```javascript
+// Let's assume that the context from the previous example is still the same
+fasoc.hashListGetterSetter(context, 'style', {
+  attributes: ['name', 'value']
+});
+contex.style(); // []
+context.style('background-color', 'red'); // context
+context.style(); // [{name: 'background-color', value: 'red'}]
+context.style('background-color'); // {name: 'background-color', value: 'red'}
+
+// can also call it with an object
+context.style({name: 'border', value: 'black'}); // context
+context.style(); // [{name: 'background-color', value: 'red'},{name: 'border', value: 'black'}]
+context.style('border'); // {name: 'border', value: 'black'}
+context.style('border', 'blue'); // adds another border property
+// [{name: 'background-color', value: 'red'},{name: 'border', value: 'black'},{name: 'border', value: 'blue'}]
+```
+
+Replace strategy
+```javascript
+fasoc.hashListGetterSetter(context, 'style', {
+  attributes: ['name', 'value'],
+  strategy: 'replace'
+});
+
+context.style('border', 'blue');
+context.style(); // [{name: 'border', value: 'blue'}]
+context.style('border', 'red');
+context.style(); // [{name: 'border', value: 'red'}]
+```
+
+
 + Hash attribute (`hashGetterSetter`)
+Represents a simple hash
+
+```javascript
+fasoc.hashGetterSetter(context, 'config');
+context.config('port', '8080');
+context.config(); // {'port': '8080'}
+context.config('host', 'localhost'); // context
+context.config(); // {'port': '8080', 'host': 'localhost'}
+context.config('port'); // '8080'
+```
+
+### TODO
++ Support `accept` in hashListGetterSetter and hashGetterSetter
++ Add a whitelist config to hashGetterSetter
+
