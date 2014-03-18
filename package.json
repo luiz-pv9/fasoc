@@ -5,7 +5,7 @@
   "description": "functions as sort of classes using chain pattern",
   "main": "./fasoc.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "dependencies": {
     "underscore": "*"

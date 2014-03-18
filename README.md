@@ -138,6 +138,15 @@ context.config(); // {'port': '8080', 'host': 'localhost'}
 context.config('port'); // '8080'
 ```
 
+#### Chaining
+```javascript
+context.width(100)
+       .height(150)
+       .style('border', 'red')
+       .config('port', '8080')
+       .ids(40, 30);
+```
+
 ### TODO
 + Support `accept` in hashListGetterSetter and hashGetterSetter
 + Add a whitelist config to hashGetterSetter

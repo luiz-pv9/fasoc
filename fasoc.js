@@ -6,6 +6,9 @@ if (typeof exports !== 'undefined') {
 
 var fasoc = {
 
+  /* ======================================================================== */
+  /*                          attrGetterSetter                                */
+  /* ======================================================================== */
   attrGetterSetter: function(context, attr, config) {
     config = config || {};
     var value = config.defaultValue;
@@ -23,14 +26,17 @@ var fasoc = {
       return value;
     };
   },
-
+  
+  /* ======================================================================== */
+  /*                          listGetterSetter                                */
+  /* ======================================================================== */
   listGetterSetter: function(context, attr, config) {
     config = config || {};
     var value = config.defaultValue || [];
     config.strategy = config.strategy || "push";
     context[attr] = function(v) {
-      if(_.isArray(v)) {
-
+      var args = Array.prototype.slice.call(arguments);
+      if(_.isArray(args[0])) {
         if(_.isFunction(config.accept)) {
           var accept = config.accept(v);
           if(accept !== true) {
@@ -39,24 +45,25 @@ var fasoc = {
         }
         value = v;
         return context;
-
-      } else if(_.isNumber(v) || _.isString(v) || !!v) {
-
-        if(_.isFunction(config.accept)) {
-          var accept = config.accept(v);
-          if(accept !== true) {
-            return accept;
+      } else if(args.length > 0 && (_.isNumber(args[0]) || _.isString(args[0]) || !!args[0])) {
+        for(var i = 0; i < args.length; i++) {
+          var arg = args[i];
+          if(_.isFunction(config.accept)) {
+            var accept = config.accept(arg);
+            if(accept !== true) {
+              return accept;
+            }
           }
-        }
 
-        if(config.strategy === 'push') {
-          value.push(v);
-        } else if(config.strategy === 'toggle') {
-          if(_.contains(value, v)) {
-            var index = _.indexOf(value, v);
-            value.splice(index, 1);
-          } else {
-            value.push(v);
+          if(config.strategy === 'push') {
+            value.push(arg);
+          } else if(config.strategy === 'toggle') {
+            if(_.contains(value, arg)) {
+              var index = _.indexOf(value, arg);
+              value.splice(index, 1);
+            } else {
+              value.push(arg);
+            }
           }
         }
         return context;
@@ -65,6 +72,9 @@ var fasoc = {
     };
   },
 
+  /* ======================================================================== */
+  /*                          hashListGetterSetter                            */
+  /* ======================================================================== */
   hashListGetterSetter: function(context, attr, config) {
     config = config || {};
     var value = config.defaultValue || [];
@@ -149,6 +159,9 @@ var fasoc = {
     }
   },
   
+  /* ======================================================================== */
+  /*                          hashGetterSetter                                */
+  /* ======================================================================== */
   hashGetterSetter: function(context, attr, config) {
     config = config || {};
     var value = config.defaultValue || {};

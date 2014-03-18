@@ -53,6 +53,11 @@ describe("fasoc module", function() {
         context.books('Harry Potter').should.equal(context);
       });
 
+      it('adds a value to the list using parameters', function() {
+        context.books('Harry', 'Potter');
+        context.books().should.eql(['Harry', 'Potter']);
+      });
+
       it('overrides the list', function() {
         context.books(['Harry', 'Potter']).should.equal(context);
         context.books().should.eql(['Harry', 'Potter']);
@@ -86,6 +91,10 @@ describe("fasoc module", function() {
         context.books().should.eql([]);
         context.books('foo');
         context.books().should.eql(['foo']);
+      });
+      it('toggles values in the same parameter', function() {
+        context.books('foo', 'bar', 'foo', 'qux');
+        context.books().should.eql(['bar', 'qux']);
       });
     });
     describe("accept function", function() {
