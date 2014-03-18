@@ -29,8 +29,8 @@ context.width(); // 100
 context.height(); // 200 
 ```
 
-It's also possible to specify the defualt value and an `accept` function as the
-3rd argument.
+It's also possible to specify the defualt value and an `accept` function as properties
+in the 3rd argument.
 
 ```javascript
 fasoc.attrGetterSetter(context, 'opacity', {
@@ -47,8 +47,45 @@ context.opacity(0.7); // context
 context.opacity(); // 0.7
 ```
 
-+ List attribute (`listGetterSetter`)
-Represents a collection of values. For example: phones, 
+#### List attribute `listGetterSetter`
+
+Represents a collection of values. For example: phones, books, etc.
+###### Examples:
+
+```javascript
+// Let's assume that the context from the previous example is still the same
+fasoc.listGetterSetter(context, 'ids');
+context.ids(); // []
+context.ids(20); // context
+context.ids(); // [20]
+context.ids(3); // context
+context.ids(); // [20, 30]
+```
+
+Passing an array overrides the whole list
+```javascript
+fasoc.listGetterSetter(context, 'ids');
+context.ids(); // []
+context.ids(20); // context
+context.ids(); // [20]
+context.ids([10]);
+context.ids(); // [10]
+```
+
+Using the toggle strategy
+```javascript
+fasoc.listGetterSetter(context, 'ids', {
+  strategy: 'toggle'
+});
+
+context.ids(30); // context
+context.ids(); // [30]
+context.ids(30);
+context.ids(); // []
+```
+
+listGetterSetter also accepts an `accept` function in the config object
+
 
 + HashList attribute (`hashListGetterSetter`)
 + Hash attribute (`hashGetterSetter`)
